@@ -1,12 +1,11 @@
-//1
 const feedBackFormEl = document.querySelector('.feedback-form');
 let formData = {
-  email: ' ',
-  message: ' ',
+  email: '',
+  message: '',
 };
 //console.log(feedBackFormEl);
 
-//3
+// Функція для заповнення полів форми з localStorage
 const fillFormFields = () => {
   const formDataFromLs = JSON.parse(
     localStorage.getItem('feedback-form-state')
@@ -24,7 +23,8 @@ const fillFormFields = () => {
   }
 };
 fillFormFields();
-//2
+
+// Обробник змін полів форми
 const onFormFieldChange = event => {
   const fieldName = event.target.name;
   const fieldValue = event.target.value;
@@ -34,7 +34,7 @@ const onFormFieldChange = event => {
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
 
-//4
+//Обробник сабміту форми
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
 
@@ -45,9 +45,16 @@ const onFeedbackFormSubmit = event => {
     alert('Fill please all fields');
     return;
   }
-  event.target.reset();
-  localStorage.removeItem('feedback-form-state');
   console.log(formData);
+  // Очищення форми
+  event.target.reset();
+  // Очищення localStorage
+  localStorage.removeItem('feedback-form-state');
+  // Очищення об'єкта formData
+  formData = {
+    email: '',
+    message: '',
+  };
 };
 
 feedBackFormEl.addEventListener('input', onFormFieldChange);
