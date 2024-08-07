@@ -27,7 +27,7 @@ fillFormFields();
 // Обробник змін полів форми
 const onFormFieldChange = event => {
   const fieldName = event.target.name;
-  const fieldValue = event.target.value;
+  const fieldValue = event.target.value.trim();
 
   formData[fieldName] = fieldValue;
 
